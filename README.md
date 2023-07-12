@@ -1,4 +1,4 @@
-# mosaico
+# App Espaço Mosaico
 
 A new Flutter project.
 
