@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mosaico/collaborator/collaborator_page.dart';
+import 'package:mosaico/home/home_page.dart';
+import 'package:mosaico/login/login_page.dart';
+import 'package:mosaico/patient/patient_page.dart';
+import 'package:mosaico/report/report_page.dart';
 import 'package:mosaico/utils/usertype_page.dart';
 
 class DrawerHomePage extends StatelessWidget implements PreferredSizeWidget {
@@ -20,8 +25,7 @@ class DrawerHomePage extends StatelessWidget implements PreferredSizeWidget {
           if (user == UserType.responsible) _responsible(context),
           TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
               },
               child: const Text(
                 'Sair',
@@ -35,10 +39,30 @@ class DrawerHomePage extends StatelessWidget implements PreferredSizeWidget {
     return Column(
       children: [
         _menuHeader('assets/logo.jpg', 'Administrador'),
-        _itemMenu(Icons.calendar_month, 'Agenda', () {}),
-        _itemMenu(Icons.groups, 'Colaboradores', () {}),
-        _itemMenu(Icons.diversity_3, 'Pacientes', () {}),
-        _itemMenu(Icons.assignment, 'Relatórios', () {})
+        _itemMenu(Icons.calendar_month, 'Agenda', () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => HomePage(
+                    user: user,
+                  )));
+        }),
+        _itemMenu(Icons.groups, 'Colaboradores', () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => CollaboratorPage(
+                    user: user,
+                  )));
+        }),
+        _itemMenu(Icons.diversity_3, 'Pacientes', () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => PatientPage(
+                    user: user,
+                  )));
+        }),
+        _itemMenu(Icons.assignment, 'Relatórios', () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => ReportPage(
+                    user: user,
+                  )));
+        })
       ],
     );
   }
@@ -47,9 +71,24 @@ class DrawerHomePage extends StatelessWidget implements PreferredSizeWidget {
     return Column(
       children: [
         _menuHeader('assets/professional.jpg', 'Beatriz Cardoso Ferreira'),
-        _itemMenu(Icons.calendar_month, 'Agenda', () {}),
-        _itemMenu(Icons.diversity_3, 'Pacientes', () {}),
-        _itemMenu(Icons.assignment, 'Relatórios Enviados', () {})
+        _itemMenu(Icons.calendar_month, 'Agenda', () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => HomePage(
+                    user: user,
+                  )));
+        }),
+        _itemMenu(Icons.diversity_3, 'Pacientes', () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => PatientPage(
+                    user: user,
+                  )));
+        }),
+        _itemMenu(Icons.assignment, 'Relatórios Enviados', () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => ReportPage(
+                    user: user,
+                  )));
+        })
       ],
     );
   }
@@ -58,8 +97,18 @@ class DrawerHomePage extends StatelessWidget implements PreferredSizeWidget {
     return Column(
       children: [
         _menuHeader('assets/patient.jpg', 'Breno Souza Ribeiro'),
-        _itemMenu(Icons.calendar_month, 'Agenda', () {}),
-        _itemMenu(Icons.assignment, 'Relatórios Recebidos', () {}),
+        _itemMenu(Icons.calendar_month, 'Agenda', () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => HomePage(
+                    user: user,
+                  )));
+        }),
+        _itemMenu(Icons.assignment, 'Relatórios Recebidos', () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => ReportPage(
+                    user: user,
+                  )));
+        }),
       ],
     );
   }
@@ -107,7 +156,7 @@ class DrawerHomePage extends StatelessWidget implements PreferredSizeWidget {
         ),
         child: Row(
           children: [
-            Icon(icon, color: Colors.grey),
+            Icon(icon, color: Colors.orange),
             Padding(
               padding: const EdgeInsets.only(left: 24),
               child: Container(
