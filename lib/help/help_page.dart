@@ -9,6 +9,7 @@ class HelpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         toolbarHeight: preferredSize.height,
         centerTitle: true,
         title: const Text(
@@ -56,8 +57,6 @@ class HelpPage extends StatelessWidget {
             ),
           ),
           const Divider(
-            indent: 10,
-            endIndent: 10,
             color: Colors.grey,
           ),
           _item(Icons.pin_drop, 'Unidade 1'),
@@ -89,8 +88,6 @@ class HelpPage extends StatelessWidget {
             ),
           ),
           const Divider(
-            indent: 10,
-            endIndent: 10,
             color: Colors.grey,
           ),
           _item(Icons.smartphone, 'Celular'),
